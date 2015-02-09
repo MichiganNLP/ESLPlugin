@@ -3,11 +3,6 @@
 console.log('Welcome to the EFL Helper Chrome extension');
 
 $(function() {
-  $("p:contains('element')").html(function(_, html) {
-    var word = 'element';
-    var re = new RegExp('('+word+')',"g");
-    // TODO: the regex here is literal -- parameterize it to support a list of words
-    return html.replace(re, '<span class="efl-interesting-word">$1</span>');
   });
 
   //$('body:contains("•")').contents().each(function () {
@@ -27,28 +22,8 @@ $(function() {
     //    $(e.target).find('h3').remove();
     //  }
     //);
-});
 
-// jquery-ui tooltip
 $(function() {
-  $( document ).tooltip({
-    track: true,
-    open: function (event, ui) {
-      ui.tooltip.css("max-width", "400px");
-      ui.tooltip.css("height", "100px");
-      console.log('EVENT:');
-      console.log(event);
-    },
-    items: ".efl-interesting-word",
-    content: function(displayCallback) {
-      var element = $( this );
-      var text = element.text();
-      $.get('http://localhost:8080/hello/' + text
-        , function(data) {
-          displayCallback(data); //**call the callback function to return the value**
-      });
-    }
-  });
 });
 
 // Working - bootstrap the angular app on the <body> tag
@@ -59,11 +34,43 @@ eslPluginApp.config(function () {
   console.log('eslPlugin app config');
 });
 
-eslPluginApp.directive('testDirective',['$log', function($log) {
+eslPluginApp.directive('testDirective',['$log', '$timeout', function($log, $timeout) {
   return {
     restrict: 'EA',
     link: function(scope, el, attrs) {
       $log.log('testDirective link function');
+
+// jquery-ui tooltips
+      $timeout(
+        function() {
+          $("p:contains('the')").html(function(_, html) {
+//        $("article:contains('element')").html(function(_, html) {
+            var word = 'the';
+            var re = new RegExp('(' + word + ')', "g");
+            // TODO: the regex here is literal -- parameterize it to support a list of words
+            return html.replace(re, '<span class="efl-interesting-word">$1</span>');
+          });
+
+          $(document).tooltip({
+            track: true,
+            open: function (event, ui) {
+              ui.tooltip.css("max-width", "400px");
+              ui.tooltip.css("height", "100px");
+              console.log('EVENT:');
+              console.log(event);
+            },
+            items: ".efl-interesting-word",
+            content: function(displayCallback) {
+              var element = $(this);
+              var text = element.text();
+              $.get('http://localhost:8080/hello/' + text
+                , function(data) {
+                  displayCallback(data); //**call the callback function to return the value**
+                });
+            }
+          });
+        },0
+      )
     }
   }
 }]);
