@@ -37,6 +37,7 @@
       "js": [
         "scripts/vendor/jquery.min.js",
         "scripts/vendor/jquery-ui.min.js",
+        "scripts/vendor/angular.js",
         "scripts/contentscript.js"
       ],
       "run_at": "document_end",

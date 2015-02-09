@@ -51,3 +51,24 @@ $(function() {
   });
 });
 
+// Working - bootstrap the angular app on the <body> tag
+// TODO: add material design styles?
+var eslPluginApp = window.App = angular.module('eslPlugin', []);
+
+eslPluginApp.config(function () {
+  console.log('eslPlugin app config');
+});
+
+eslPluginApp.directive('testDirective',['$log', function($log) {
+  return {
+    restrict: 'EA',
+    link: function(scope, el, attrs) {
+      $log.log('testDirective link function');
+    }
+  }
+}]);
+
+// find the body tag with jquery, then add the directive attr to it
+// note that this depends upon SYNCHRONOUS execution of the .attr function
+$('body').attr('test-directive', '');
+angular.bootstrap('body', ['eslPlugin']);
