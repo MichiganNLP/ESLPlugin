@@ -12,19 +12,6 @@ $(function() {
   //    })
   //  }
   //});
-    //alert('Yay, I\'m an extension :)');
-    //console.log($('body'));
-    //$('p').css('background-color', 'pink');
-    //$('p').hover(function(e) {
-    //    $(e.target).append('<h3>OMG I rule</h3>');
-    //  },
-    //  function(e) {
-    //    $(e.target).find('h3').remove();
-    //  }
-    //);
-
-$(function() {
-});
 
 // Working - bootstrap the angular app on the <body> tag
 // TODO: add material design styles?
@@ -43,12 +30,13 @@ eslPluginApp.directive('testDirective',['$log', '$timeout', function($log, $time
 // jquery-ui tooltips
       $timeout(
         function() {
-          $("p:contains('the')").html(function(_, html) {
-//        $("article:contains('element')").html(function(_, html) {
-            var word = 'the';
-            var re = new RegExp('(' + word + ')', "g");
-            // TODO: the regex here is literal -- parameterize it to support a list of words
-            return html.replace(re, '<span class="efl-interesting-word">$1</span>');
+            $("p").html(function(_, html) {
+            var words = ['the', 'and', 'text', 'wildcard', 'multiple'];
+            var anyWord = words.join('|')
+            // the spaces around the word ensure that we don't find it inside other words
+            var re = new RegExp(' (' + anyWord + ') ', "g");
+            // note the spaces around the <span> tags
+            return html.replace(re, ' <span class="efl-interesting-word">$1</span> ');
           });
 
           $(document).tooltip({
@@ -63,9 +51,12 @@ eslPluginApp.directive('testDirective',['$log', '$timeout', function($log, $time
             content: function(displayCallback) {
               var element = $(this);
               var text = element.text();
+              // TODO: this callback fails on https pages
               $.get('http://localhost:8080/hello/' + text
                 , function(data) {
-                  displayCallback(data); //**call the callback function to return the value**
+                  // todo - set the models on the template instead of using the display callback
+                  displayCallback('<div>'+text+'</div>');
+                  //displayCallback(data); //**call the callback function to return the value**
                 });
             }
           });

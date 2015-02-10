@@ -4,17 +4,24 @@
 
 
 /* tooltip styles */
-.tooltip-background {
+
+/* the ui-tooltip class will override whatever theme (if any) is set in the ui-bootstrap css */
+.ui-tooltip {
   /*z-index: 10000 !important;*/
   /*height: 200px;*/
   width: 200px;
   text-align: center;
   background-color: #ffffff;
+  color: black;
   border: 1px solid black;
 }
 
 .efl-interesting-word {
   background-color: orchid;
+  width: 200px;
+  text-align: center;
+  background-color: #ffffff;
+  border: 1px solid black;
 }
 
 /*.ui-tooltip, .arrow:after {*/
