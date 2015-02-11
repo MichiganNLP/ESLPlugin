@@ -57,7 +57,9 @@ eslPluginApp.directive('testDirective',['$log', '$timeout', function($log, $time
                   // todo - set the models on the template instead of using the display callback
                   displayCallback('<div>'+text+'</div>');
                   //displayCallback(data); //**call the callback function to return the value**
-                });
+                }).fail(function() {
+                  displayCallback('<div>' + 'sorry, the server is not available' + '</div>');
+                })
             }
           });
         },0
