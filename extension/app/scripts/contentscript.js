@@ -2,16 +2,9 @@
 
 console.log('Welcome to the EFL Helper Chrome extension');
 
-$(function() {
-  });
-
-  //$('body:contains("•")').contents().each(function () {
-  //  if (this.nodeType == 3) {
-  //    $(this).parent().html(function (_, oldValue) {
-  //      return oldValue.replace(/•/g, "<span class='bullets'>$&</span>")
-  //    })
-  //  }
-  //});
+var config = {
+  salsaBackendUrl: 'http://0.0.0.0:8080/hello'
+}
 
 // Working - bootstrap the angular app on the <body> tag
 // TODO: add material design styles?
@@ -52,14 +45,12 @@ eslPluginApp.directive('testDirective',['$log', '$timeout', function($log, $time
               var element = $(this);
               var text = element.text();
               // TODO: this callback fails on https pages
-              $.get('http://localhost:8080/hello/' + text
-                , function(data) {
-                  // todo - set the models on the template instead of using the display callback
-                  displayCallback('<div>'+text+'</div>');
-                  //displayCallback(data); //**call the callback function to return the value**
-                }).fail(function() {
-                  displayCallback('<div>' + 'sorry, the server is not available' + '</div>');
-                })
+              $.get(config.salsaBackendUrl + '/' + text, function(res) {
+                displayCallback('<div>' + res + '</div>');
+              })
+              .fail(function() {
+                displayCallback('<div>' + 'sorry, the server is not available' + '</div>');
+              })
             }
           });
         },0
