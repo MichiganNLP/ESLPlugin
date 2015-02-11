@@ -6,6 +6,7 @@
 /* tooltip styles */
 
 /* the ui-tooltip class will override whatever theme (if any) is set in the ui-bootstrap css */
+/* styles for the tooltip itself */
 .ui-tooltip {
   /*z-index: 10000 !important;*/
   /*height: 200px;*/
@@ -16,12 +17,15 @@
   border: 1px solid black;
 }
 
+/* styles for highlighting words in text */
 .efl-interesting-word {
   background-color: orchid;
   width: 200px;
   text-align: center;
   background-color: #ffffff;
-  border: 1px solid black;
+  border: 1px dotted black;
+  cursor: pointer;
+  cursor: hand;
 }
 
 /*.ui-tooltip, .arrow:after {*/
