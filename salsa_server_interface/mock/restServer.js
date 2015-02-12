@@ -1,6 +1,8 @@
 var restify = require('restify');
 var request = require('request');
 var fs = require('fs');
+var natural = require('natural');
+var wordnet = new natural.WordNet();
 
 // Setup some https server options
 var https_options = {
@@ -17,9 +19,29 @@ var setup_server = function(app) {
     next();
   }
 
+
+  function wordnetLookup(req, res, next) {
+    var queryWord = req.params.word;
+    wordnet.lookup(queryWord, function(results) {
+    results.forEach(function(result) {
+      console.log('------------------------------------');
+      console.log(result.synsetOffset);
+      console.log(result.pos);
+      console.log(result.lemma);
+      console.log(result.synonyms);
+      console.log(result.pos);
+      console.log(result.gloss);
+    });
+    res.send(results);
+    next();
+  });
+}
+
   // setup routes here
 
   app.get('/hello/:name', respond);
+
+  app.get('/wordnet/:word', wordnetLookup);
 
   //app.param('lang', /^\w{2}$/);
   app.get('/wikipedia/:lang', function(req, res, next){
@@ -53,6 +75,37 @@ var setup_server = function(app) {
     request(requestUrl, afterWikipedia);
   });
 
+  app.get('/wiktionary/:lang', function(req, res, next){
+    console.log('wiktionary req');
+    // the search parameter name is 'srsearch'
+    var lang = req.params.lang.toString().trim();
+
+    // Question: put in quotes to search literally?
+    var searchQuery = encodeURIComponent(req.query.page);
+    var query = '&page=' + searchQuery;
+
+    // removes the region from the language (if any)
+    // en-US -> en, es-ES -> es
+    var lang = lang.split('-')[0];
+    var lang_host = 'http://' + lang + '.wiktionary.org';
+
+    var path = '/w/api.php?action=parse&format=json&prop=text|revid|displaytitle&callback=?';
+
+    var requestUrl = lang_host + path + query;
+
+    var afterWikipedia = function(error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var results = response;
+        console.log(results);
+        res.send(results);
+        next();
+      }
+    }
+
+    console.log(requestUrl);
+    request(requestUrl, afterWikipedia);
+  });
+
   //getJSON.getJSON(options,
   //	function(result) {
   //		var searchResults = result.query.search;
@@ -60,6 +113,7 @@ var setup_server = function(app) {
 //	});
 //
 //  });
+//
 }
 
 // Instantiate an https and an http server
