@@ -7,10 +7,10 @@
 
 /* the ui-tooltip class will override whatever theme (if any) is set in the ui-bootstrap css */
 /* styles for the tooltip itself */
+
 .ui-tooltip {
-  /*z-index: 10000 !important;*/
-  /*height: 200px;*/
   width: 200px;
+  height: 500px !important;
   text-align: center;
   background-color: #ffffff;
   color: black;

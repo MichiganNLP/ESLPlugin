@@ -19,22 +19,54 @@ var setup_server = function(app) {
     next();
   }
 
+  // a wordnet result
+//{ synsetOffset: 13679721,
+//  lexFilenum: 23,
+//  pos: 'n',
+//  wCnt: 3,
+//  lemma: 'angstrom',
+//  synonyms: [ 'angstrom', 'angstrom_unit', 'A' ],
+//  lexId: '0',
+//  ptrs:
+//   [ { pointerSymbol: '@',
+//       synsetOffset: 13670886,
+//       pos: 'n',
+//       sourceTarget: '0000' },
+//     { pointerSymbol: '#p',
+//       synsetOffset: 13679972,
+//       pos: 'n',
+//       sourceTarget: '0000' },
+//     { pointerSymbol: '%p',
+//       synsetOffset: 13679505,
+//       pos: 'n',
+//       sourceTarget: '0000' } ],
+//  gloss: 'a metric unit of length equal to one ten billionth of a meter (or 0.0001 micron); used to specify wavelengths of electromagnetic radiation  ',
+//  def: 'a metric unit of length equal to one ten billionth of a meter (or 0.0001 micron)',
+//  exp: [ 'used to specify wavelengths of electromagnetic radiation' ] }
+
 
   function wordnetLookup(req, res, next) {
     var queryWord = req.params.word;
     wordnet.lookup(queryWord, function(results) {
-    results.forEach(function(result) {
-      console.log('------------------------------------');
-      console.log(result.synsetOffset);
-      console.log(result.pos);
-      console.log(result.lemma);
-      console.log(result.synonyms);
-      console.log(result.pos);
-      console.log(result.gloss);
+      results.forEach(function(result) {
+        console.log('one result');
+        console.log(result);
+        console.log('end result');
+        console.log(result.synsetOffset);
+        console.log(result.pos);
+        console.log(result.lemma);
+        console.log(result.synonyms);
+        console.log(result.pos);
+        console.log(result.gloss);
+      });
+
+      var uiResults = results.map(function(res, idx) {
+        return { 'sense': idx, 'synonyms': res['synonyms'], 'gloss': res['gloss'], 'def': res['def'], 'example': res['example'] }
+      })
+
+      res.send(uiResults);
+      next();
     });
-    res.send(results);
-    next();
-  });
 }
 
   // setup routes here
