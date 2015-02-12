@@ -10,7 +10,7 @@
 
 .ui-tooltip {
   width: 200px;
-  height: 500px !important;
+  max-height: 500px !important;
   text-align: center;
   background-color: #ffffff;
   color: black;

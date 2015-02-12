@@ -115,6 +115,7 @@ eslPluginApp
   .service('keywords', ['$log', function($log) {
     return [
       "possibly",
+      'collaboration',
       "permit",
       "accelerate",
       "accumulate",
