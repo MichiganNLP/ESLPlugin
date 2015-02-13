@@ -61,7 +61,7 @@ var setup_server = function(app) {
       });
 
       var uiResults = results.map(function(res, idx) {
-        return { 'sense': idx, 'synonyms': res['synonyms'], 'gloss': res['gloss'], 'def': res['def'], 'example': res['example'] }
+        return { 'sense': idx, 'synonyms': res['synonyms'], 'gloss': res['gloss'], 'def': res['def'], 'examples': res['exp'] }
       })
 
       res.send(uiResults);

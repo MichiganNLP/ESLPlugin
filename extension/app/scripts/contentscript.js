@@ -94,10 +94,38 @@ eslPluginApp.directive('eslPluginElement',['$log', '$timeout', 'keywords', funct
                 //TODO: use ngRepeat with tooltip directive
                 // res is a list of wordnet results
 
-                var resList = results.map(function(res) {
-                  return '<div>' + res['gloss'] + '</div><hr/>';
+                //def
+                //exp
+                //synonyms
+                var resList = results.map(function(res, senseIdx) {
+                  var synonyms = res['synonyms'].map(function(syn) {
+                    return '<div class="synonym">' + syn + '</div>';
+                  }).join('');
+                  var synsetHtml = '<div class="synonyms">' + synonyms + '</div>';
+
+                  var examples = res['examples'].map(function(example) {
+                    return '<div class="example">' + example + '</div>';
+                  }).join('<hr/>');
+                  var examplesHtml = '<div class="examples">' + examples + '</div>';
+
+                  // increment to start counting at 1
+                  senseIdx = Number(senseIdx) + 1;
+
+                  return '<div class="sense-info">' +
+                           '<h6>Sense: ' + senseIdx + '</h6>' +
+                           '<h5>Definition: </h5>' +
+                           '<div>' + res['def'] + '</div>' +
+                           '<h5>Synonyms: </h5>' +
+                           synsetHtml +
+                           '<h5>Examples: </h5>' +
+                           examplesHtml +
+                           '</div><hr/>';
                 }).join('');
-                var formattedResults = '<div>' + resList + '</div>';
+
+                var formattedResults = '<div>' +
+                                       '<h5>Word: ' + text + '</h5>' +
+                                         resList +
+                                       '</div>';
                 displayCallback(formattedResults);
               })
               .fail(function() {
