@@ -3,6 +3,7 @@ angular.module('eslPluginKeywords', []);
 angular.module('eslPluginKeywords')
   .service('keywords', ['$log', function($log) {
     return [
+      "film",
       "possibly",
       "aim",
       "projects",

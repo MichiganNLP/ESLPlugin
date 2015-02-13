@@ -98,6 +98,7 @@ eslPluginApp.directive('eslPluginElement',['$log', '$timeout', 'keywords', funct
                 //exp
                 //synonyms
                 var resList = results.map(function(res, senseIdx) {
+
                   var synonyms = res['synonyms'].map(function(syn) {
                     return '<div class="synonym">' + syn + '</div>';
                   }).join('');
@@ -110,6 +111,7 @@ eslPluginApp.directive('eslPluginElement',['$log', '$timeout', 'keywords', funct
 
                   // increment to start counting at 1
                   senseIdx = Number(senseIdx) + 1;
+
 
                   return '<div class="sense-info">' +
                            '<h6>Sense: ' + senseIdx + '</h6>' +
