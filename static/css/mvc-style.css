@@ -1,0 +1,178 @@
+html,body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+	color:#000000;
+	font-family: verdana,helvetica,arial,sans-serif;
+	background-color: #FOEAD6;
+	text-align: left;
+	overflow: auto;
+}
+.center {
+    text-align: center;
+}
+
+.readingItem p {
+    text-align: left;
+    padding: 16px;
+}
+.feedback {
+    color: blue;
+}
+.feedback:hover {
+    cursor: pointer;
+    background-color: white;
+}
+.feedbackItem {
+    padding-bottom: 20px;
+}
+
+ul, li {
+    list-style-type: none;
+    margin: 0;
+    padding: 4px;
+}
+
+#loading {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+
+#hd_top {
+	height: 100px;
+	width: 100%;
+	line-height: 16.8px;
+	font-size: 14px;
+	top: 0px;
+	position: fixed;
+}
+#loading#spinner {
+    width: 50px;
+    height: 57px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* the image is 50x57, so we use negative margins of 1/2 that size to center it*/
+    margin: -28px 0 0 -25px; 
+}    
+
+.reading {
+	text-size: x-large;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: justify; 
+	line-height: 2.5;
+}
+
+#hd_synList {
+	text-align: center;
+}
+
+#hd_example {
+	padding: 5px;
+}
+
+.headword {
+	font-size: x-large;
+}
+
+.prompt {
+	background-color: LightGrey;
+	border-left: 2px solid;
+	border-bottom: 2px solid;
+	border-top: 1px solid;	
+	border-right: 1px solid;	
+	padding: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+}
+
+#userInfo {
+	width: 50%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 2.5;
+}
+
+#hello {
+	width: 50%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#hd_top {
+	background-color: #C0C9B3;
+	text-align: center;
+	visibility: visible;
+    border-bottom: 2px;
+    position: fixed;
+    top: 0;
+    width: 100%
+	height: 100px;
+    z-index: 10000;
+}
+#hd_header {
+    background-color: #35531A;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+}
+
+#mainContent {
+	top: 100px;
+	position: absolute;
+}
+
+#readingElements {
+	width: 70%;
+    background-color: LightGrey;
+	margin-left: 5%;
+	margin-right: auto;
+	text-align: justify;
+}
+
+#infoColumn {
+	position: fixed;
+    top: 100px;
+	right: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+	width: 23%;
+    opacity: 0;
+    text-align: center;
+    padding-top: 10px;
+	color: black;
+	text-size: medium;
+	background-color: Khaki;
+    z-index: 3;
+}
+#toQuiz {
+    width: 100%;
+    background-color: LightBlue;
+    text-align: center;
+}
+#quizButton {
+    display: inline-block;
+    margin: auto;
+}
+.hover-pointer:hover {cursor:pointer}
+.alert {
+   /* background-color: #7EA629; */
+    color: black;
+    text-align: center;
+}
+
+

@@ -1,0 +1,15 @@
+{
+		url: "/salsa",
+		type: "POST",
+		datatype:"json",
+		data: {'word':word, 'sentence': sentence},
+		success: function(response){
+			displaySynonyms (response.result);
+			if (response.result.length > 1){
+				displayExample(word, example);
+			}
+		},
+		error: function(){
+			console.log('there was a problem with the request');
+		}
+};

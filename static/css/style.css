@@ -1,0 +1,154 @@
+html,body, #wrapper {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+	color:#000000;
+	font-family: verdana,helvetica,arial,sans-serif;
+	background-color: #FOEAD6;
+}
+#wrapper { 
+    background-color: LemonChiffon;
+}
+#quizElements {
+    position: absolute;
+    padding: 5px;
+    height: 100%;
+    left: 50%;
+    margin-left: -494px;
+    background-color: DarkGray;
+    top: 40px;
+    width: 978px;
+}
+#questions, #answers {
+    top: 0px;
+}
+
+#questions {
+    width: 80%;
+    background-color: Khaki;
+}
+#answers {
+    width: 20%;
+    background-color: Coral;
+}
+#answers:hover {
+    background-color: Salmon;
+}
+.col {
+    height: 100%;
+    float: left;
+}
+#footer {
+    position: fixed;
+    width: 100%;
+    background-color: DodgerBlue;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    bottom: 0;
+}
+#submit {
+    display: block;
+    width: 200px;
+    height: 100%;
+    margin: auto;
+}    
+
+.question {
+    margin: 10px 20px 10px 20px;
+}
+.blank {
+    display: inline-block;
+    width: 100px;
+    height: 20px;
+    vertical-align: middle; 
+    margin-left: 4px;
+    margin-right: 4px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: DarkKhaki;
+    text-align: center;
+}
+
+.blank:hover {
+    background: lavender;
+}
+.dragWord {
+    background: PaleTurquoise;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-top: 6px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.dragWord:hover {
+    cursor: pointer;
+    background-color: Tomato;
+}
+
+#listDrop {
+    width: 10px;    
+    margin: auto;
+}
+
+
+/* stateful classes */
+/* .occupied */
+
+/* end stateful classes */
+
+
+
+/* Page-loading indicator */
+#loading {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+#spinner {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* the image is 40x40, so we use negative margins of 1/2 that size to center it*/
+    margin: -20px 0 0 -20px; 
+}    
+/* End page loading */
+
+.fancy {
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+/* Clearfix for floated cols */
+/* For modern browsers */
+.container:before,
+.container:after {
+    content:"";
+    display:table;
+}
+.container:after {
+    clear:both;
+}
+/* For IE 6/7 (trigger hasLayout) */
+.container {
+    zoom:1;
+}
+/* end clearfix */ 
